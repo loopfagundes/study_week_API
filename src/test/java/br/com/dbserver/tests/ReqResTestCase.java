@@ -13,19 +13,19 @@ import org.testng.annotations.Test;
 public class ReqResTestCase {
     @Test
     public void validSingleUserStatus200AndSchema() {
-        Rest rest = new Rest("https://regres.in");
+        Rest rest = new Rest("https://reqres.in");
         rest.get("/api/users/2", HttpStatus.SC_OK)
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/SingleUser.json"))
                 .body("data.id", Matchers.is(2))
                 .body("data.email", Matchers.is("janet.weaver@reqres.in"))
                 .body("data.first_name", Matchers.is("Janet"))
                 .body("data.last_name", Matchers.is("Weaver"))
-                .body("data.avatar", Matchers.is("https://regres.in/img/faces/2-image.jpg"));
+                .body("data.avatar", Matchers.is("https://reqres.in/img/faces/2-image.jpg"));
     }
 
     @Test
     public void validSingleUserStatus201() {
-        Rest rest = new Rest("https://regres.in");
+        Rest rest = new Rest("https://reqres.in");
         rest.post("/api/users", HttpStatus.SC_CREATED, UserDataFactory.create().getClass());
     }
 }
